@@ -4,7 +4,13 @@ This project is a python command line application designed to ingest data/report
 ## Business Requirements
 Build an application to ingest monthly reports, generate sales summaries by category and output consolidated reports.
 
-See the [Requirements](requirements.pdf) for full details
+See the [Requirements Document](requirements.pdf) for full details.
+
+Use the files provided below:
+
+[201904.xlsx](https://github.com/ben2d2/ipd-acme-groceries/blob/master/data/201904.xlsx)
+
+[201905.txt](https://github.com/ben2d2/ipd-acme-groceries/blob/master/data/201905.txt)
 
 ## Technical Requirements
 - python3
