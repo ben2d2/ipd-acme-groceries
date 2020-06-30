@@ -7,8 +7,7 @@ Build an application to ingest monthly reports, generate sales summaries by cate
 See the [Requirements](requirements.pdf) for full details
 
 ## Technical Requirements
-- python3 (Python 3.7.6)
-- pip (python package installer)
+- python3
 
 ## Installation
 Download or clone this repo to your preferred workspace directory
