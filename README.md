@@ -14,6 +14,8 @@ Use the files provided below:
 
 ## Technical Requirements
 - python3
+- pip
+- [PyInquierer](https://github.com/CITGuru/PyInquirer/)
 
 ## Installation
 Download or clone this repo to your preferred workspace directory
