@@ -1,7 +1,12 @@
 # Acme Groceries Sales Analysis Application
 This project is a python command line application designed to ingest data/reports and generate sales analysis reports.
 
-## Requirements
+## Business Requirements
+Build an application to ingest monthly reports, generate sales summaries by category and output consolidated reports.
+
+See the [Requirements](requirements.pdf) for full details
+
+## Technical Requirements
 - python3 (Python 3.7.6)
 - pip (python package installer)
 
