@@ -7,6 +7,7 @@ This project is a python command line application designed to ingest data/report
 
 ## Installation
 Download or clone this repo to your preferred workspace directory
+
 `git clone git@github.com:ben2d2/ipd-acme-groceries.git`
 
 
