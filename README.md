@@ -23,4 +23,5 @@ Download or clone this repo to your preferred workspace directory
 
 `git clone git@github.com:ben2d2/ipd-acme-groceries.git`
 
-
+## Running Tests
+`python -m unittest discover tests`
