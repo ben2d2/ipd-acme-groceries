@@ -15,7 +15,6 @@ Use the files provided below:
 ## Technical Requirements
 - python3
 - pip
-- [PyInquierer](https://github.com/CITGuru/PyInquirer/)
 
 Check out the [requirements.txt](requirements.txt) to find supporting python package requirements
 
