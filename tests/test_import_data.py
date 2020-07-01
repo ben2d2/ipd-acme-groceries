@@ -1,5 +1,5 @@
 import unittest
-from data_importer import DataImporter, InvalidImportException
+from data_importer import DataImporter, InvalidFileExtensionException
 
 class TestDataImporter(unittest.TestCase):
     def setUp(self):
@@ -11,8 +11,8 @@ class TestDataImporter(unittest.TestCase):
     def test_load_data_with_xlsx_file(self):
         self.assertEqual(self._class.load("foo.xlsx"), "Excel file")
 
-    def test_raises_exception_with_invalid_file_type(self):
-        self.assertRaises(InvalidImportException, self._class.load, "foo.md")
+    def test_raises_exception_with_invalid_file_extension(self):
+        self.assertRaises(InvalidFileExtensionException, self._class.load, "foo.md")
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,6 @@
 import re
 
-class InvalidImportException(Exception):
+class InvalidFileExtensionException(Exception):
     pass
 
 class DataImporter():
@@ -18,7 +18,7 @@ class DataImporter():
             if file_path.endswith(".txt"):
                 return "Text file"
         else:
-            raise InvalidImportException
+            raise InvalidFileExtensionException
 
     def is_valid_file_extension(self, file_path):
         return bool(self.FILE_EXTENSIONS_REGEX.search(file_path))
