@@ -12,7 +12,11 @@ class DataImporter():
 
     def load(self, file_path):
         if self.is_valid_file_extension(file_path):
-            return file_path
+            if file_path.endswith(".xlsx"):
+                return "Excel file"
+
+            if file_path.endswith(".txt"):
+                return "Text file"
         else:
             raise InvalidImportException
 
