@@ -35,12 +35,7 @@ class DataImporter():
                                     'SKU': row.SKU,
                                     'Category': row.Section
                                 }
-                            formatted_value = 0
-                            if key == 'Units':
-                                formatted_value = int(value)
-                            elif key == 'Gross Sales':
-                                formatted_value = float(value)
-                            row_as_dict[date][key] = formatted_value
+                            row_as_dict[date][key] = key == 'Units' if int(value) else float(value)
                         except:
                             raise InvalidDataFormatException(key, value)
 
@@ -66,3 +61,4 @@ class DataImporter():
             return pd.read_excel(file_path)
         elif file_path.endswith('.txt'):
             return pd.read_csv(file_path, sep='\t', lineterminator='\r')
+        
