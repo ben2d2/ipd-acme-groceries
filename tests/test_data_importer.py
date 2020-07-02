@@ -1,11 +1,19 @@
+import logging
 import unittest
-from data_importer import DataImporter, InvalidFileExtensionException, InvalidHeaderWithDateFormatException, InvalidDataFormatException
+from data_importer import DataImporter
+from exceptions.data_importer_exceptions import (
+    InvalidFileExtensionException, 
+    InvalidHeaderWithDateFormatException, 
+    InvalidDataFormatException
+)
 from xlrd import XLRDError
 from pandas.errors import ParserError
 
 class TestDataImporter(unittest.TestCase):
     def setUp(self):
         self._class = DataImporter()
+        # disable logging
+        logging.disable(logging.CRITICAL)
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
     def test_load_as_dataframe_with_schema_using_txt_file(self):

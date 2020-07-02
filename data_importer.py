@@ -1,19 +1,11 @@
 import re
 import pandas as pd
-from pandas.core.common import flatten
 from datetime import datetime
-
-class InvalidDataFormatException(Exception):
-    pass
-
-class InvalidFileFormatException(Exception):
-    pass
-
-class InvalidFileExtensionException(Exception):
-    pass
-
-class InvalidHeaderWithDateFormatException(Exception):
-    pass
+from exceptions.data_importer_exceptions import (
+    InvalidFileExtensionException, 
+    InvalidHeaderWithDateFormatException, 
+    InvalidDataFormatException
+)
 
 class DataImporter():
     PERMITTED_FILE_EXTENSIONS = ['.txt', '.xlsx']
@@ -50,7 +42,7 @@ class DataImporter():
                                 formatted_value = float(value)
                             row_as_dict[date][key] = formatted_value
                         except:
-                            raise InvalidDataFormatException
+                            raise InvalidDataFormatException(key, value)
 
                 new_rows.append(row_as_dict.values())
                 
@@ -59,7 +51,7 @@ class DataImporter():
                 columns=self.MASTER_SCHEMA
             )
         else:
-            raise InvalidFileExtensionException
+            raise InvalidFileExtensionException(file_path)
 
     def get_date_and_key_tuple(self, header):
         date_and_key = header.split(' ', 1)
@@ -67,7 +59,7 @@ class DataImporter():
             date, key = date_and_key
             return (date, key)
         else:
-            raise InvalidHeaderWithDateFormatException
+            raise InvalidHeaderWithDateFormatException(header)
 
     def get_file_as_dataframe(self, file_path):
         if file_path.endswith('.xlsx'):
