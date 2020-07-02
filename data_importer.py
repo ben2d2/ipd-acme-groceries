@@ -35,7 +35,7 @@ class DataImporter():
                                     'SKU': row.SKU,
                                     'Category': row.Section
                                 }
-                            row_as_dict[date][key] = key == 'Units' if int(value) else float(value)
+                            row_as_dict[date][key] = int(value) if key == 'Units' else float(value)
                         except:
                             raise InvalidDataFormatException(key, value)
 
