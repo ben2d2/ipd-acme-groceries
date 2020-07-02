@@ -1,5 +1,5 @@
 import unittest
-from data_importer import DataImporter, InvalidFileExtensionException, InvalidHeaderWithDateFormatException
+from data_importer import DataImporter, InvalidFileExtensionException, InvalidHeaderWithDateFormatException, InvalidDataFormatException
 from xlrd import XLRDError
 from pandas.errors import ParserError
 
@@ -20,6 +20,9 @@ class TestDataImporter(unittest.TestCase):
 
     def test_raises_exception_with_invalid_file_extension(self):
         self.assertRaises(InvalidFileExtensionException, self._class.load_as_dataframe_with_schema, 'foo.md')
+
+    def test_raises_exception_with_invalid_data_format(self):
+        self.assertRaises(InvalidDataFormatException, self._class.load_as_dataframe_with_schema, 'tests/fixtures/test-201905-invalid-data.txt')
 
     # TESTS GET FILE AS DATAFRAME
     def test_get_file_as_dataframe_with_txt_file(self):
