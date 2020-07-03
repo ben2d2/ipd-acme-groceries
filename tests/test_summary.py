@@ -2,13 +2,6 @@ import logging
 import unittest
 from data_importer import DataImporter
 from summary import Summary
-from exceptions.data_importer_exceptions import (
-    InvalidFileExtensionException, 
-    InvalidHeaderWithDateFormatException, 
-    InvalidDataFormatException
-)
-from xlrd import XLRDError
-from pandas.errors import ParserError
 
 class TestSummary(unittest.TestCase):
     def setUp(self):
