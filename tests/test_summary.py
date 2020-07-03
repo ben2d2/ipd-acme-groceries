@@ -27,5 +27,12 @@ class TestSummary(unittest.TestCase):
         result = self._class.calculate_for('NotACategory', '2020', '1')
         self.assertEqual(result, 'No data available')
 
+    def test_calculate_for_with_duplicates(self):
+        data_importer = DataImporter()
+        dataframe = data_importer.load_as_dataframe_with_schema('tests/fixtures/test-201905-with-dupes.txt')
+        summary = Summary(dataframe)
+        result = summary.calculate_for('Produce', '2018', '12')
+        self.assertEqual(result, 'Produce - Total Units: 717, Total Gross Sales: 11658.83')
+
 if __name__ == '__main__':
     unittest.main()
