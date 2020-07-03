@@ -3,7 +3,7 @@ class Summary():
 		self.dataframe = dataframe
 
 	def calculate_for(self, category, year, month):
-		# need to add checks for dupe SKU/Year/Month and take only max Year/Month
+		# need to add checks for dupe SKU/Year/Month and take only max ReportYear/ReportMonth extracted from filename
 		df = self.dataframe.drop_duplicates()
 		results = df[(df.Category == category) & (df.Year == year) & (df.Month == month)]
 		if len(results) > 0:
