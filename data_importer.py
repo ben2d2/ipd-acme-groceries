@@ -14,7 +14,7 @@ class DataImporter():
         '|'.join(re.escape(x) for x in PERMITTED_FILE_EXTENSIONS)
     ))
 
-    MASTER_SCHEMA = ['Year','Month','ImportedAt','SKU','Category','Units','Gross Sales']
+    MASTER_SCHEMA = ['Year','Month','SKU','Category','Units','Gross Sales','ImportedAt']
 
     def load_as_dataframe_with_schema(self, file_path):
         new_rows = []
@@ -32,9 +32,9 @@ class DataImporter():
                                 row_as_dict[date] = {
                                     'Year': year,
                                     'Month': month,
-                                    'ImportedAt': datetime.now(),
                                     'SKU': row.SKU,
-                                    'Category': row.Section
+                                    'Category': row.Section,
+                                    'ImportedAt': datetime.now()
                                 }
                             row_as_dict[date][key] = int(value) if key == 'Units' else float(value)
                         except:
