@@ -27,9 +27,3 @@ class InvalidImportException(Exception):
         self.message = "Invalid import."
         logging.error(self.message)
         super().__init__(self.message)
-
-class InvalidClearDataException(Exception):
-    def __init__(self):
-        self.message = "Could not clear data."
-        logging.error(self.message)
-        super().__init__(self.message)
