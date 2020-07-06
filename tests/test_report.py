@@ -9,7 +9,8 @@ class TestReport(TestBase):
         self.load_data('tests/fixtures/test-201904.xlsx')
         self.load_data('tests/fixtures/test-201905-with-rows-with-zeros.txt')
         # read from persistence file and init class
-        self._class = Report(self.read_persistence_file())
+        dataframe = self.read_persistence_file()
+        self._class = Report(dataframe)
 
     def tearDown(self):
         super().tearDown()
@@ -21,6 +22,7 @@ class TestReport(TestBase):
         # and 6 unique dates in multiple columns with one unique from txt file
         # given txt with 5 rows, one row has all zeros, and 6 unique dates in multiple columns
         self.assertEqual(len(results), 28)
+        self.assertEqual(results.columns.tolist(), ['Year','Month','SKU','Category','Units','Gross Sales'])
 
 if __name__ == '__main__':
     unittest.main()

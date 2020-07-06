@@ -18,7 +18,7 @@ class TestBase(unittest.TestCase):
 
     def read_persistence_file(self):
         # read from persistence file TEST_TO_FILE_PATH
-        dataframe = pd.read_csv(self.TEST_TO_FILE_PATH)
+        dataframe = pd.read_csv(self.TEST_TO_FILE_PATH, index_col=[0])
         dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
 
         return dataframe

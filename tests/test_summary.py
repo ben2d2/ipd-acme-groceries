@@ -9,7 +9,8 @@ class TestSummary(TestBase):
         # import and save data
         self.load_data('tests/fixtures/test-201905.txt')
         # read from persistence file and init class
-        self._class = Summary(self.read_persistence_file())
+        dataframe = self.read_persistence_file()
+        self._class = Summary(dataframe)
 
     def tearDown(self):
         super().tearDown()
