@@ -7,8 +7,9 @@ from summary import Summary
 
 class TestSummary(unittest.TestCase):
     def setUp(self):
-        data_importer = DataImporter()
-        data_importer.load_as_dataframe_with_schema('tests/fixtures/test-201905.txt')
+        # import and save data
+        df = DataImporter().load_and_save('tests/fixtures/test-201905.txt', 'master.csv')
+        # read from persistence file master.csv
         dataframe = pd.read_csv('master.csv')
         dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
         self._class = Summary(dataframe)
@@ -16,6 +17,7 @@ class TestSummary(unittest.TestCase):
         logging.disable(logging.CRITICAL)
 
     def tearDown(self):
+        # delete master.csv test file
         os.remove('master.csv')
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
@@ -29,7 +31,8 @@ class TestSummary(unittest.TestCase):
 
     def test_calculate_for_with_duplicates(self):
         data_importer = DataImporter()
-        data_importer.load_as_dataframe_with_schema('tests/fixtures/test-201905-with-dupes.txt')
+        df = data_importer.load_and_save('tests/fixtures/test-201905-with-dupes.txt', 'master.csv')
+        data_importer.save_to(df, 'master.csv')
         dataframe = pd.read_csv('master.csv')
         dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
         summary = Summary(dataframe)

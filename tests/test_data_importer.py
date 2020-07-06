@@ -16,21 +16,21 @@ class TestDataImporter(unittest.TestCase):
         logging.disable(logging.CRITICAL)
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
-    def test_load_as_dataframe_with_schema_using_txt_file(self):
-        df = self._class.load_as_dataframe_with_schema('tests/fixtures/test-201905.txt')
+    def test_load_and_save_using_txt_file(self):
+        df = self._class.load_and_save('tests/fixtures/test-201905.txt', 'master.csv')
         # given files with 4 rows and 6 unique dates in multiple columns
         self.assertEqual(len(df.values), 24)
 
-    def test_load_as_dataframe_with_schema_using_xlsx_file(self):
-        df = self._class.load_as_dataframe_with_schema('tests/fixtures/test-201904.xlsx')
+    def test_load_and_save_using_xlsx_file(self):
+        df = self._class.load_and_save('tests/fixtures/test-201904.xlsx', 'master.csv')
         # given files with 4 rows and 6 unique dates in multiple columns
         self.assertEqual(len(df.values), 24)
 
     def test_raises_exception_with_invalid_file_extension(self):
-        self.assertRaises(InvalidFileExtensionException, self._class.load_as_dataframe_with_schema, 'foo.md')
+        self.assertRaises(InvalidFileExtensionException, self._class.load_and_save, 'foo.md', 'master.csv')
 
     def test_raises_exception_with_invalid_data_format(self):
-        self.assertRaises(InvalidDataFormatException, self._class.load_as_dataframe_with_schema, 'tests/fixtures/test-201905-invalid-data.txt')
+        self.assertRaises(InvalidDataFormatException, self._class.load_and_save, 'tests/fixtures/test-201905-invalid-data.txt', 'master.csv')
 
     # TESTS GET FILE AS DATAFRAME
     def test_get_file_as_dataframe_with_txt_file(self):

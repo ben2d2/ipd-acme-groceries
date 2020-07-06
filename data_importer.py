@@ -24,10 +24,10 @@ class DataImporter():
         except:
             raise InvalidImportException
 
-    def load_as_dataframe_with_schema(self, file_path):
+    def load_and_save(self, from_file_path, to_file_path):
         new_rows = []
-        if self.FILE_EXTENSIONS_REGEX.search(file_path):
-            df = self.get_file_as_dataframe(file_path)
+        if self.FILE_EXTENSIONS_REGEX.search(from_file_path):
+            df = self.get_file_as_dataframe(from_file_path)
             for i, row in df.iterrows():
                 row_as_dict = {}
                 for data_tuple in row.iteritems():
@@ -49,12 +49,15 @@ class DataImporter():
                             raise InvalidDataFormatException(key, value)
                 new_rows.append(row_as_dict.values())
 
-            return pd.DataFrame(
+            # collect rows for insert to persistence file
+            new_df = pd.DataFrame(
                 [r for row in new_rows for r in row], 
                 columns=self.MASTER_SCHEMA
             )
+            self.save_to(new_df, to_file_path)
+            return new_df
         else:
-            raise InvalidFileExtensionException(file_path)
+            raise InvalidFileExtensionException(from_file_path)
 
     def get_date_and_key_tuple(self, header):
         date_and_key = header.split(' ', 1)
@@ -64,9 +67,9 @@ class DataImporter():
         else:
             raise InvalidHeaderWithDateFormatException(header)
 
-    def get_file_as_dataframe(self, file_path):
-        if file_path.endswith('.xlsx'):
-            return pd.read_excel(file_path)
-        elif file_path.endswith('.txt'):
-            return pd.read_csv(file_path, sep='\t', lineterminator='\r')
+    def get_file_as_dataframe(self, from_file_path):
+        if from_file_path.endswith('.xlsx'):
+            return pd.read_excel(from_file_path)
+        elif from_file_path.endswith('.txt'):
+            return pd.read_csv(from_file_path, sep='\t', lineterminator='\r')
         
