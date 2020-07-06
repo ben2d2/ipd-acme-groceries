@@ -3,6 +3,7 @@ import click
 import pandas as pd
 from data_importer import DataImporter
 from summary import Summary
+from report import Report
 
 TO_FILE_PATH = 'master.csv'
 
@@ -26,6 +27,13 @@ def ingest(file_path):
 def summary(category, year, month):
 	dataframe = read_persistence_file()
 	result = Summary(dataframe).calculate_for(category, year, month)
+	click.echo(result)
+
+@cli.command()
+@click.argument('file_path')
+def generate_report(file_path):
+	dataframe = read_persistence_file()
+	result = Report(dataframe).gather_data()
 	click.echo(result)
 
 @cli.command()
