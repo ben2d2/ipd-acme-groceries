@@ -27,7 +27,7 @@ class DataImporter():
     def load_and_save(self, from_file_path, to_file_path):
         new_rows = []
         if self.FILE_EXTENSIONS_REGEX.search(from_file_path):
-            df = self.get_file_as_dataframe(from_file_path)
+            df = self.get_file_as_dataframe(from_file_path).dropna()
             for i, row in df.iterrows():
                 row_as_dict = {}
                 for data_tuple in row.iteritems():
