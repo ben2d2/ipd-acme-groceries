@@ -25,11 +25,9 @@ class TestSummary(TestBase):
 
     def test_calculate_for_with_duplicates(self):
         # import and save concat with previous data
-        df = DataImporter().load_and_save('tests/fixtures/test-201905-with-dupes.txt', self.TEST_TO_FILE_PATH)
+        self.load_data('tests/fixtures/test-201905-with-dupes.txt')
         # read from persistence file TEST_TO_FILE_PATH
-        dataframe = pd.read_csv(self.TEST_TO_FILE_PATH)
-        dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
-        summary = Summary(dataframe)
+        summary = Summary(self.read_persistence_file())
         
         result = summary.calculate_for('Produce', '2018', '12')
         self.assertEqual(result, 'Produce - Total Units: 717, Total Gross Sales: 11658.83')

@@ -15,7 +15,7 @@ class TestReport(TestBase):
         super().tearDown()
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
-    def test_calculate_for(self):
+    def test_gather_data_count(self):
         results = self._class.gather_data()
         # given xlsx with 4 rows, some rows are dupes from the txt file
         # and 6 unique dates in multiple columns with one unique from txt file
