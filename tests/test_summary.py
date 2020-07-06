@@ -1,14 +1,13 @@
 import logging
 import pandas as pd
 from test_base import TestBase
-from data_importer import DataImporter
 from summary import Summary
 
 class TestSummary(TestBase):
     def setUp(self):
         super().setUp()
         # import and save data
-        DataImporter().load_and_save('tests/fixtures/test-201905.txt', self.TEST_TO_FILE_PATH)
+        self.load_data('tests/fixtures/test-201905.txt')
         # read from persistence file and init class
         self._class = Summary(self.read_persistence_file())
 

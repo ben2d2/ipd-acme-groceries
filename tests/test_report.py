@@ -1,14 +1,13 @@
 import logging
 from test_base import TestBase
-from data_importer import DataImporter
 from report import Report
 
 class TestReport(TestBase):
     def setUp(self):
         super().setUp()
         # import and save data
-        DataImporter().load_and_save('tests/fixtures/test-201904.xlsx', self.TEST_TO_FILE_PATH)
-        DataImporter().load_and_save('tests/fixtures/test-201905-with-rows-with-zeros.txt', self.TEST_TO_FILE_PATH)
+        self.load_data('tests/fixtures/test-201904.xlsx')
+        self.load_data('tests/fixtures/test-201905-with-rows-with-zeros.txt')
         # read from persistence file and init class
         self._class = Report(self.read_persistence_file())
 

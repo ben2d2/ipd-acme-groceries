@@ -2,6 +2,7 @@ import unittest
 import logging
 import os
 import pandas as pd
+from data_importer import DataImporter
 
 class TestBase(unittest.TestCase):
     TEST_TO_FILE_PATH = 'master.csv'
@@ -21,3 +22,6 @@ class TestBase(unittest.TestCase):
         dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
 
         return dataframe
+
+    def load_data(self, from_file_path):
+        DataImporter().load_and_save(from_file_path, self.TEST_TO_FILE_PATH)
