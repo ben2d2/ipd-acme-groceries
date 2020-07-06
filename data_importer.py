@@ -17,9 +17,9 @@ class DataImporter():
 
     MASTER_SCHEMA = ['Year','Month','SKU','Category','Units','Gross Sales','ImportedAt']
 
-    def save_to(self, dataframe, filename):
+    def save_to(self, dataframe, to_file_path):
         try:
-            with open('master.csv', 'a') as f:
+            with open(to_file_path, 'a') as f:
                 dataframe.to_csv(f, header=f.tell()==0)
         except:
             raise InvalidImportException

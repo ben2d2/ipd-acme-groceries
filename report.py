@@ -1,3 +1,5 @@
+import pandas as pd
+
 class Report():
 	def __init__(self, dataframe):
 		self.dataframe = dataframe
