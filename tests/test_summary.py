@@ -1,24 +1,19 @@
 import logging
-import unittest
-import os
 import pandas as pd
+from test_base import TestBase
 from data_importer import DataImporter
 from summary import Summary
 
-class TestSummary(unittest.TestCase):
+class TestSummary(TestBase):
     def setUp(self):
+        super().setUp()
         # import and save data
-        df = DataImporter().load_and_save('tests/fixtures/test-201905.txt', 'master.csv')
-        # read from persistence file master.csv
-        dataframe = pd.read_csv('master.csv')
-        dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
-        self._class = Summary(dataframe)
-        # disable logging
-        logging.disable(logging.CRITICAL)
+        DataImporter().load_and_save('tests/fixtures/test-201905.txt', self.TEST_TO_FILE_PATH)
+        # read from persistence file and init class
+        self._class = Summary(self.read_persistence_file())
 
     def tearDown(self):
-        # delete master.csv test file
-        os.remove('master.csv')
+        super().tearDown()
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
     def test_calculate_for(self):
@@ -31,9 +26,9 @@ class TestSummary(unittest.TestCase):
 
     def test_calculate_for_with_duplicates(self):
         # import and save concat with previous data
-        df = DataImporter().load_and_save('tests/fixtures/test-201905-with-dupes.txt', 'master.csv')
-        # read from persistence file master.csv
-        dataframe = pd.read_csv('master.csv')
+        df = DataImporter().load_and_save('tests/fixtures/test-201905-with-dupes.txt', self.TEST_TO_FILE_PATH)
+        # read from persistence file TEST_TO_FILE_PATH
+        dataframe = pd.read_csv(self.TEST_TO_FILE_PATH)
         dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
         summary = Summary(dataframe)
         

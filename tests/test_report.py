@@ -1,25 +1,19 @@
 import logging
-import unittest
-import os
-import pandas as pd
+from test_base import TestBase
 from data_importer import DataImporter
 from report import Report
 
-class TestReport(unittest.TestCase):
+class TestReport(TestBase):
     def setUp(self):
+        super().setUp()
         # import and save data
-        DataImporter().load_and_save('tests/fixtures/test-201904.xlsx', 'master.csv')
-        DataImporter().load_and_save('tests/fixtures/test-201905-with-rows-with-zeros.txt', 'master.csv')
-        # read from persistence file master.csv
-        dataframe = pd.read_csv('master.csv')
-        dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
-        self._class = Report(dataframe)
-        # disable logging
-        logging.disable(logging.CRITICAL)
+        DataImporter().load_and_save('tests/fixtures/test-201904.xlsx', self.TEST_TO_FILE_PATH)
+        DataImporter().load_and_save('tests/fixtures/test-201905-with-rows-with-zeros.txt', self.TEST_TO_FILE_PATH)
+        # read from persistence file and init class
+        self._class = Report(self.read_persistence_file())
 
     def tearDown(self):
-        # delete master.csv test file
-        os.remove('master.csv')
+        super().tearDown()
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
     def test_calculate_for(self):

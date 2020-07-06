@@ -1,5 +1,5 @@
 import logging
-import unittest
+from test_base import TestBase
 from data_importer import DataImporter
 from exceptions.data_importer_exceptions import (
     InvalidFileExtensionException, 
@@ -9,28 +9,30 @@ from exceptions.data_importer_exceptions import (
 from xlrd import XLRDError
 from pandas.errors import ParserError
 
-class TestDataImporter(unittest.TestCase):
+class TestDataImporter(TestBase):
     def setUp(self):
+        super().setUp()
         self._class = DataImporter()
-        # disable logging
-        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        super().tearDown()
 
     # TESTS LOADING DATAFRAME USING MASTER SCHEMA
     def test_load_and_save_using_txt_file(self):
-        df = self._class.load_and_save('tests/fixtures/test-201905.txt', 'master.csv')
+        df = self._class.load_and_save('tests/fixtures/test-201905.txt', self.TEST_TO_FILE_PATH)
         # given files with 4 rows and 6 unique dates in multiple columns
         self.assertEqual(len(df.values), 24)
 
     def test_load_and_save_using_xlsx_file(self):
-        df = self._class.load_and_save('tests/fixtures/test-201904.xlsx', 'master.csv')
+        df = self._class.load_and_save('tests/fixtures/test-201904.xlsx', self.TEST_TO_FILE_PATH)
         # given files with 4 rows and 6 unique dates in multiple columns
         self.assertEqual(len(df.values), 24)
 
     def test_raises_exception_with_invalid_file_extension(self):
-        self.assertRaises(InvalidFileExtensionException, self._class.load_and_save, 'foo.md', 'master.csv')
+        self.assertRaises(InvalidFileExtensionException, self._class.load_and_save, 'foo.md', self.TEST_TO_FILE_PATH)
 
     def test_raises_exception_with_invalid_data_format(self):
-        self.assertRaises(InvalidDataFormatException, self._class.load_and_save, 'tests/fixtures/test-201905-invalid-data.txt', 'master.csv')
+        self.assertRaises(InvalidDataFormatException, self._class.load_and_save, 'tests/fixtures/test-201905-invalid-data.txt', self.TEST_TO_FILE_PATH)
 
     # TESTS GET FILE AS DATAFRAME
     def test_get_file_as_dataframe_with_txt_file(self):
