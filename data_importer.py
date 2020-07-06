@@ -17,10 +17,6 @@ class DataImporter():
     MASTER_SCHEMA = ['Year','Month','ImportedAt','SKU','Category','Units','Gross Sales']
 
     def load_as_dataframe_with_schema(self, file_path):
-        # require a date in the filename for chronological integrity
-        # needs a way to identify the date in the filename as the chronological
-        # anchor for when conflicting rows are imported via separate files
-        # always take data from the latest filename ReportYear and ReportMonth
         new_rows = []
         if self.FILE_EXTENSIONS_REGEX.search(file_path):
             df = self.get_file_as_dataframe(file_path)
