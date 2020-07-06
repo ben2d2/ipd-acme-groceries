@@ -44,7 +44,7 @@ class DataImporter():
                                     'Category': row.Section,
                                     'ImportedAt': datetime.now()
                                 }
-                            row_as_dict[date][key] = int(value) if key == 'Units' else float(value)
+                            row_as_dict[date][key] = int(value) if key == 'Units' else round(float(value), 2)
                         except:
                             raise InvalidDataFormatException(key, value)
                 new_rows.append(row_as_dict.values())
