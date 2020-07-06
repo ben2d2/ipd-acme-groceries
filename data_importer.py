@@ -4,7 +4,8 @@ from datetime import datetime
 from exceptions.data_importer_exceptions import (
     InvalidFileExtensionException, 
     InvalidHeaderWithDateFormatException, 
-    InvalidDataFormatException
+    InvalidDataFormatException,
+    InvalidImportException
 )
 
 class DataImporter():
@@ -15,6 +16,13 @@ class DataImporter():
     ))
 
     MASTER_SCHEMA = ['Year','Month','SKU','Category','Units','Gross Sales','ImportedAt']
+
+    def save_to(dataframe, filename):
+        try:
+            with open('master.csv', 'a') as f:
+                new_df.to_csv(f, header=f.tell()==0)
+        except:
+            raise InvalidImportException
 
     def load_as_dataframe_with_schema(self, file_path):
         new_rows = []
@@ -40,7 +48,7 @@ class DataImporter():
                         except:
                             raise InvalidDataFormatException(key, value)
                 new_rows.append(row_as_dict.values())
-                
+
             return pd.DataFrame(
                 [r for row in new_rows for r in row], 
                 columns=self.MASTER_SCHEMA

@@ -21,3 +21,9 @@ class InvalidHeaderWithDateFormatException(Exception):
         self.message = "Invalid format in '%s' for extracting a date." % (string)
         logging.error(self.message)
         super().__init__(self.message)
+
+class InvalidImportException(Exception):
+    def __init__(self):
+        self.message = "Invalid import."
+        logging.error(self.message)
+        super().__init__(self.message)
