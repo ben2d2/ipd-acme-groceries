@@ -16,9 +16,13 @@ def cli():
 def ingest(file_path):
 	try:
 		data_importer = DataImporter().load_and_save(file_path, TO_FILE_PATH)
-		click.echo('Success')
-	except:
-		click.echo('Error')
+		click.secho('Success', fg='white', bg='blue')
+	except Exception as e:
+		if hasattr(e, 'message'):
+			error_message = 'Error: %s' % e.message
+		else:
+			error_message = e
+		click.secho(error_message, fg='white', bg='red')
 
 @cli.command()
 @click.argument('category')
@@ -28,9 +32,12 @@ def summary(category, year, month):
 	dataframe = read_persistence_file()
 	if len(dataframe) > 0:
 		result = Summary(dataframe).calculate_for(category, year, month)
-		click.echo(result)
+		if result == 'No data available':
+			click.secho(result, bg='white', fg='blue')
+		else:
+			click.secho(result, fg='white', bg='blue')
 	else:
-		click.echo('No data has been imported. Please run the `ingest` command to import some data.')
+		click.secho('No data has been imported. Please run the `ingest` command to import some data.', fg='white', bg='yellow')
 
 @cli.command()
 @click.argument('file_path')
@@ -40,9 +47,9 @@ def generate_report(file_path):
 		result = Report(dataframe).gather_data()
 		with open(file_path, 'a') as f:
 			result.to_csv(f, header=f.tell()==0)
-		click.echo('File generated')
+		click.secho('File generated', fg='white', bg='blue')
 	else:
-		click.echo('No data has been imported. Please run the `ingest` command to import some data.')
+		click.secho('No data has been imported. Please run the `ingest` command to import some data.', fg='white', bg='yellow')
 
 @cli.command()
 def clear_data():
