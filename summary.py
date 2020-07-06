@@ -4,7 +4,7 @@ class Summary():
 
 	def calculate_for(self, category, year, month):
 		# need to add checks for dupe SKU/Year/Month and take only max ReportYear/ReportMonth extracted from filename
-		df = self.dataframe.drop_duplicates()
+		df = self.dataframe.drop_duplicates(subset=self.dataframe.columns.difference(['ImportedAt']))
 		results = df[(df.Category == category) & (df.Year == year) & (df.Month == month)]
 		if len(results) > 0:
 			total_units = results['Units'].sum()
