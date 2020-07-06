@@ -15,6 +15,8 @@ Use the files provided below:
 ## Technical Requirements
 - python3
 - pip
+- [pandas](https://pandas.pydata.org/)
+- [click](https://click.palletsprojects.com/en/7.x/)
 
 Check out the [requirements.txt](requirements.txt) to find supporting python package requirements
 
@@ -22,6 +24,18 @@ Check out the [requirements.txt](requirements.txt) to find supporting python pac
 Download or clone this repo to your preferred workspace directory
 
 `git clone git@github.com:ben2d2/ipd-acme-groceries.git`
+
+## Running the App
+- From your terminal cd into the app directory
+
+#### Using setuptools implementation
+- Run `pip install .` to access the app from your terminal with the simple command `acme`
+- Type `acme --help` to see the list of available commands
+
+or
+
+#### Using python command
+- Run `python acme.py --help` to see the list of available commands
 
 ## Running Tests
 `python -m unittest discover tests`
