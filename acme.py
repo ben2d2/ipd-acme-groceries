@@ -6,7 +6,6 @@ from summary import Summary
 from report import Report
 
 TO_FILE_PATH = 'master-EHg8u63zYd.csv'
-MASTER_SCHEMA = ['Year','Month','SKU','Category','Units','Gross Sales','ImportedAt']
 
 @click.group()
 def cli():
