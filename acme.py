@@ -14,10 +14,10 @@ def cli():
 @cli.command()
 @click.argument('file_path')
 def ingest(file_path):
-	data_importer = DataImporter().load_and_save(file_path, TO_FILE_PATH)
-	if len(data_importer) > 0:
+	try:
+		data_importer = DataImporter().load_and_save(file_path, TO_FILE_PATH)
 		click.echo('Success')
-	else:
+	except:
 		click.echo('Error')
 
 @cli.command()
