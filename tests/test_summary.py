@@ -30,12 +30,13 @@ class TestSummary(unittest.TestCase):
         self.assertEqual(result, 'No data available')
 
     def test_calculate_for_with_duplicates(self):
-        data_importer = DataImporter()
-        df = data_importer.load_and_save('tests/fixtures/test-201905-with-dupes.txt', 'master.csv')
-        data_importer.save_to(df, 'master.csv')
+        # import and save concat with previous data
+        df = DataImporter().load_and_save('tests/fixtures/test-201905-with-dupes.txt', 'master.csv')
+        # read from persistence file master.csv
         dataframe = pd.read_csv('master.csv')
         dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
         summary = Summary(dataframe)
+        
         result = summary.calculate_for('Produce', '2018', '12')
         self.assertEqual(result, 'Produce - Total Units: 717, Total Gross Sales: 11658.83')
 
