@@ -6,7 +6,7 @@ from data_importer import DataImporter
 from summary import Summary
 from report import Report
 
-TO_FILE_PATH = 'master-EHg8u63zYd.csv'
+PERSISTENCE_FILE_PATH = 'master-EHg8u63zYd.csv'
 
 @click.group()
 def cli():
@@ -16,7 +16,7 @@ def cli():
 @click.argument('file_path')
 def ingest(file_path):
 	try:
-		data_importer = DataImporter().load_and_save(file_path, TO_FILE_PATH)
+		data_importer = DataImporter().load_and_save(file_path, PERSISTENCE_FILE_PATH)
 		click.secho('Success', fg='white', bg='blue')
 	except Exception as e:
 		if hasattr(e, 'message'):
@@ -54,20 +54,20 @@ def generate_report(file_path):
 
 @cli.command()
 def exit():
-	if os.path.exists(TO_FILE_PATH):
-		os.remove(TO_FILE_PATH)
+	if os.path.exists(PERSISTENCE_FILE_PATH):
+		os.remove(PERSISTENCE_FILE_PATH)
 	click.secho('Good bye!', fg='white', bg='green')
 	os.kill(os.getppid(), signal.SIGHUP)
 
 @cli.command()
 def clear_data():
-	if os.path.exists(TO_FILE_PATH):
-		os.remove(TO_FILE_PATH)
+	if os.path.exists(PERSISTENCE_FILE_PATH):
+		os.remove(PERSISTENCE_FILE_PATH)
 	
 def read_persistence_file():
-	if os.path.exists(TO_FILE_PATH):
-		# read from persistence file TEST_TO_FILE_PATH
-		dataframe = pd.read_csv(TO_FILE_PATH, index_col=[0])
+	if os.path.exists(PERSISTENCE_FILE_PATH):
+		# read from persistence file TEST_PERSISTENCE_FILE_PATH
+		dataframe = pd.read_csv(PERSISTENCE_FILE_PATH, index_col=[0])
 		dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
 
 		return dataframe
