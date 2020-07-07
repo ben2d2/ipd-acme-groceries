@@ -1,4 +1,5 @@
 import os
+import signal
 import click
 import pandas as pd
 from data_importer import DataImporter
@@ -50,6 +51,13 @@ def generate_report(file_path):
 		click.secho('File generated', fg='white', bg='blue')
 	else:
 		click.secho('No data has been imported. Please run the `ingest` command to import some data.', fg='white', bg='yellow')
+
+@cli.command()
+def exit():
+	if os.path.exists(TO_FILE_PATH):
+		os.remove(TO_FILE_PATH)
+	click.secho('Good bye!', fg='white', bg='green')
+	os.kill(os.getppid(), signal.SIGHUP)
 
 @cli.command()
 def clear_data():
