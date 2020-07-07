@@ -66,7 +66,7 @@ def clear_data():
 	
 def read_persistence_file():
 	if os.path.exists(PERSISTENCE_FILE_PATH):
-		# read from persistence file TEST_PERSISTENCE_FILE_PATH
+		# read from persistence file PERSISTENCE_FILE_PATH
 		dataframe = pd.read_csv(PERSISTENCE_FILE_PATH, index_col=[0])
 		dataframe.set_index(['ImportedAt', 'Year', 'Month', 'Category'])
 
