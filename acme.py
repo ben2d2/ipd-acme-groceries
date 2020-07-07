@@ -38,7 +38,7 @@ def summary(category, year, month):
 		else:
 			click.secho(result, fg='white', bg='blue')
 	else:
-		click.secho('No data has been imported. Please run the `ingest` command to import some data.', fg='white', bg='yellow')
+		click.secho('No data has been imported. Please run the `ingest` command.', fg='white', bg='yellow')
 
 @cli.command()
 @click.argument('file_path')
@@ -50,7 +50,7 @@ def generate_report(file_path):
 			result.to_csv(f, header=f.tell()==0)
 		click.secho('File generated', fg='white', bg='blue')
 	else:
-		click.secho('No data has been imported. Please run the `ingest` command to import some data.', fg='white', bg='yellow')
+		click.secho('No data has been imported. Please run the `ingest` command.', fg='white', bg='yellow')
 
 @cli.command()
 def exit():
