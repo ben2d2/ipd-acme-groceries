@@ -30,8 +30,8 @@ Download or clone this repo to your preferred workspace directory
 - Create a virtualenv if you so please or ensure python3 is you default python version
 - `pip install -r requirements.txt`
 
-#### Using setuptools implementation
-- `pip install .` to access the app from your terminal with the simple command `acme`
+#### Using setuptools implementation `acme` command
+- `pip install .` to install as a package and access sub-commands with the simple command `acme`
 - `acme --help` to see the list of available commands
 - `acme ingest data/201904.xlsx` to import data to the application
 - `acme summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
