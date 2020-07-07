@@ -31,13 +31,22 @@ Download or clone this repo to your preferred workspace directory
 - `pip install -r requirements.txt`
 
 #### Using setuptools implementation
-- Run `pip install .` to access the app from your terminal with the simple command `acme`
-- Type `acme --help` to see the list of available commands
+- `pip install .` to access the app from your terminal with the simple command `acme`
+- `acme --help` to see the list of available commands
+- `acme ingest data/201904.xlsx` to import data to the application
+- `acme summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
+- `acme generate-report foo.csv` to generate a Sales Report and save to a .csv file
+- `acme clear-data` to delete the persistence .csv file and start fresh
 
 or
 
-#### Using python command
-- Run `python acme.py --help` to see the list of available commands
+#### Using `python` command
+- `python acme.py --help` to see the list of available commands
+- `python acme.py ingest data/201904.xlsx` to import data to the application
+- `python acme.py summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
+- `python acme.py generate-report foo.csv` to generate a Sales Report and save to a .csv file
+- `python acme.py clear-data` to delete the persistence .csv file and start fresh
+
 
 ## Running Tests
 `python -m unittest discover tests`
