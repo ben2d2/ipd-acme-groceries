@@ -11,7 +11,7 @@ class Summary():
 		)
 		if len(results) > 0:
 			total_units = results['Units'].sum()
-			total_sales = results['Gross Sales'].sum()
+			total_sales = round(results['Gross Sales'].sum(), 2)
 			return "%s - Total Units: %s, Total Gross Sales: %s" % (category, total_units, total_sales)
 		else:
 			return 'No data available'
