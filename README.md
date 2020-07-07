@@ -50,3 +50,12 @@ or
 
 ## Running Tests
 `python3 -m unittest discover tests`
+
+
+## Setting up a `virtualenv`
+Run the following commands from your terminal and inside the app directory
+- `pip install virtualenvwrapper`
+- `python3 -m venv acme`
+- `source acme/bin/activate`
+
+Your virtual environment is now established
