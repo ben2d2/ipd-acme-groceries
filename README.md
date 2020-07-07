@@ -27,6 +27,8 @@ Download or clone this repo to your preferred workspace directory
 
 ## Running the App
 - From your terminal cd into the app directory
+- Create a virtualenv if you so please or ensure python3 is you default python version
+- `pip install -r requirements.txt`
 
 #### Using setuptools implementation
 - Run `pip install .` to access the app from your terminal with the simple command `acme`
