@@ -62,7 +62,7 @@ or
 
 Run the following commands from your terminal and inside the app directory
 - `pip install virtualenvwrapper`
-- `python3 -m venv acme`
-- `source acme/bin/activate`
+- `python3 -m venv acme-env`
+- `source acme-env/bin/activate`
 
-You are now working on the `virtualenv` name `acme`
+You are now working on the `virtualenv` name `acme-env`
