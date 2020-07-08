@@ -36,7 +36,7 @@ Download or clone this repo to your preferred workspace directory
 - `acme ingest data/201904.xlsx` to import data to the application
 - `acme summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
 - `acme generate-report foo.csv` to generate a Sales Report and save to a .csv file
-- `acme clear-data` to delete the persistence .csv file and start fresh
+- `acme reset` to delete the persistence .csv file and start fresh
 - `acme exit` to delete the persistence .csv file and exit the terminal
 
 or
@@ -46,7 +46,7 @@ or
 - `python3 acme.py ingest data/201904.xlsx` to import data to the application
 - `python3 acme.py summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
 - `python3 acme.py generate-report foo.csv` to generate a Sales Report and save to a .csv file
-- `python3 acme.py clear-data` to delete the persistence .csv file and start fresh
+- `python3 acme.py reset` to delete the persistence .csv file and start fresh
 - `python3 acme.py exit` to delete the persistence .csv file and exit the terminal
 
 

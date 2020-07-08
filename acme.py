@@ -60,7 +60,7 @@ def exit():
 	os.kill(os.getppid(), signal.SIGHUP)
 
 @cli.command()
-def clear_data():
+def reset():
 	if os.path.exists(PERSISTENCE_FILE_PATH):
 		os.remove(PERSISTENCE_FILE_PATH)
 	
