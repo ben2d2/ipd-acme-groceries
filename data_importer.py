@@ -55,7 +55,7 @@ class DataImporter():
                     date, key = self.get_date_and_key_tuple(header)
                     try:
                         if date not in row_as_dict:
-                            row_as_dict[date] = self.init_row(date, row)
+                            row_as_dict[date] = self.init_row_as_dict(date, row)
                         row_as_dict[date][key] = self.transform_value(key, value)
                     except:
                         raise InvalidDataFormatException(key, value)
@@ -66,7 +66,7 @@ class DataImporter():
             columns=self.MASTER_SCHEMA
         )
 
-    def init_row(self, date, row):
+    def init_row_as_dict(self, date, row):
         year, month = date.split('-')
         return {
             'Year': year,
