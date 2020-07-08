@@ -59,5 +59,24 @@ class TestDataImporter(TestBase):
     def test_raises_exception_with_invalid_data_get_date_and_key_tuple(self):
         self.assertRaises(InvalidHeaderWithDateFormatException, self._class.get_date_and_key_tuple, '2020-1Units')
 
+    # TESTS TRANFORM VALUE
+    def test_transform_value_for_units(self):
+        key = 'Units'
+        value = '209'
+        result = self._class.transform_value(key, value)
+        self.assertIsInstance(result, int)
+
+    def test_transform_value_for_gross_sales(self):
+        key = 'Gross Sales'
+        value = '1900.89'
+        result = self._class.transform_value(key, value)
+        self.assertIsInstance(result, float)
+
+    def test_transform_value_for_non_units_or_gross_sales(self):
+        key = 'Foo'
+        value = '209'
+        result = self._class.transform_value(key, value)
+        self.assertIsInstance(result, str)
+
 if __name__ == '__main__':
     unittest.main()
