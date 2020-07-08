@@ -41,6 +41,14 @@ def summary(category, year, month):
 		click.secho('No data has been imported. Please run the `ingest` command.', fg='white', bg='yellow')
 
 @cli.command()
+def categories():
+	categories = read_persistence_file().sort_values(by='Category').Category.unique().tolist()
+	for category in categories:
+		i = categories.index(category)
+		color = 'blue' if i % 2 == 0 else 'cyan'
+		click.secho(category, fg=color)
+
+@cli.command()
 @click.argument('file_path')
 def generate_report(file_path):
 	dataframe = read_persistence_file()

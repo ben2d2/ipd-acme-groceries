@@ -34,6 +34,7 @@ Download or clone this repo to your preferred workspace directory
 - `pip install .` to install as a package and access sub-commands with the simple command `acme`
 - `acme --help` to see the list of available commands
 - `acme ingest data/201904.xlsx` to import data to the application
+- `acme categories` to list the available Categories for Summary
 - `acme summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
 - `acme generate-report foo.csv` to generate a Sales Report and save to a .csv file
 - `acme reset` to delete the persistence .csv file and start fresh
@@ -44,6 +45,7 @@ or
 #### Using `python3` command
 - `python3 acme.py --help` to see the list of available commands
 - `python3 acme.py ingest data/201904.xlsx` to import data to the application
+- `python3 acme.py categories` to list the available Categories for Summary
 - `python3 acme.py summary Produce 2018 12` to generate a Summary for the given Category, Year, and Month
 - `python3 acme.py generate-report foo.csv` to generate a Sales Report and save to a .csv file
 - `python3 acme.py reset` to delete the persistence .csv file and start fresh
