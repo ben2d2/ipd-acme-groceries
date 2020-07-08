@@ -2,6 +2,7 @@ import os
 import signal
 import click
 import pandas as pd
+from terminaltables import AsciiTable
 from data_importer import DataImporter
 from summary import Summary
 from report import Report
@@ -33,10 +34,20 @@ def summary(category, year, month):
 	dataframe = read_persistence_file()
 	if len(dataframe) > 0:
 		result = Summary(dataframe).calculate_for(category, year, month)
-		if result == 'No data available':
-			click.secho(result, bg='white', fg='blue')
+		if category == 'ALL':
+			header_row = ['Category']
+			for header in result.columns:
+				header_row.append(header)
+			table_rows = [header_row]
+			for row in result.iterrows():
+				table_rows.append([row[0], str(round(row[1]['Units'], 0)), str(round(row[1]['Gross Sales'], 2))])
+			table = AsciiTable(table_rows)
+			click.echo(table.table)
 		else:
-			click.secho(result, fg='white', bg='blue')
+			if result == 'No data available':
+				click.secho(result, bg='white', fg='blue')
+			else:
+				click.secho(result, fg='white', bg='blue')
 	else:
 		click.secho('No data has been imported. Please run the `ingest` command.', fg='white', bg='yellow')
 
@@ -83,4 +94,4 @@ def read_persistence_file():
 		return pd.DataFrame()
 
 if __name__ == '__main__':
-    cli()
+    cli()	
