@@ -66,3 +66,6 @@ Run the following commands from your terminal and inside the app directory
 - `source acme-env/bin/activate`
 
 You are now working on the `virtualenv` name `acme-env`
+
+## Video demo
+[Loom Video](https://www.loom.com/share/68423f7d2489476bb03aef5c0c1a513d)
