@@ -42,7 +42,7 @@ def summary(category, year, month):
 			for row in result.iterrows():
 				table_rows.append([row[0], str(round(row[1]['Units'], 0)), str(round(row[1]['Gross Sales'], 2))])
 			table = AsciiTable(table_rows)
-			click.echo(table.table)
+			click.secho(table.table, fg='cyan')
 		else:
 			if result == 'No data available':
 				click.secho(result, bg='white', fg='blue')
